@@ -29,13 +29,11 @@ public class AgeController
     public ResponseEntity<?> getCountryByMinAge()
     {
         Country minAgeCountry = CountriesApplication.myCountryList.countryList.get(0);
-        int minAge = minAgeCountry.getMedianAge();
 
         for (Country c : CountriesApplication.myCountryList.countryList)
         {
-            if (c.getMedianAge() < minAge)
+            if (c.getMedianAge() < minAgeCountry.getMedianAge())
             {
-                minAge = c.getMedianAge();
                 minAgeCountry = c;
             }
         }
@@ -49,13 +47,11 @@ public class AgeController
     public ResponseEntity<?> getCountryByMaxAge()
     {
         Country maxAgeCountry = CountriesApplication.myCountryList.countryList.get(0);
-        int maxAge = maxAgeCountry.getMedianAge();
 
         for (Country c : CountriesApplication.myCountryList.countryList)
         {
-            if (c.getMedianAge() > maxAge)
+            if (c.getMedianAge() > maxAgeCountry.getMedianAge())
             {
-                maxAge = c.getMedianAge();
                 maxAgeCountry = c;
             }
         }

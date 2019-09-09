@@ -29,13 +29,11 @@ public class PopulationController
     public ResponseEntity<?> getCountryByMinPopulation()
     {
         Country minPopCountry = CountriesApplication.myCountryList.countryList.get(0);
-        long minPop = minPopCountry.getPopulation();
 
         for (Country c : CountriesApplication.myCountryList.countryList)
         {
-            if (c.getPopulation() < minPop)
+            if (c.getPopulation() < minPopCountry.getPopulation())
             {
-                minPop = c.getPopulation();
                 minPopCountry = c;
             }
         }
@@ -49,13 +47,11 @@ public class PopulationController
     public ResponseEntity<?> getCountryByMaxPopulation()
     {
         Country maxPopCountry = CountriesApplication.myCountryList.countryList.get(0);
-        long maxPop = maxPopCountry.getPopulation();
 
         for (Country c : CountriesApplication.myCountryList.countryList)
         {
-            if (c.getPopulation() > maxPop)
+            if (c.getPopulation() > maxPopCountry.getPopulation())
             {
-                maxPop = c.getPopulation();
                 maxPopCountry = c;
             }
         }
