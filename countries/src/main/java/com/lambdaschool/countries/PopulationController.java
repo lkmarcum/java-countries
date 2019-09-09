@@ -62,4 +62,23 @@ public class PopulationController
 
         return new ResponseEntity<>(maxPopCountry, HttpStatus.OK);
     }
+
+    // localhost:8080/population/median
+    @GetMapping(value = "/median",
+            produces = {"application/json"})
+    public ResponseEntity<?> getCountryByMedianPop()
+    {
+        Country midPopCountry;
+        ArrayList<Country> tempCountries = CountriesApplication.myCountryList.countryList;
+        tempCountries.sort((c1, c2) -> (int)(c1.getPopulation() - c2.getPopulation()));
+        if (tempCountries.size() % 2 == 0)
+        {
+            midPopCountry = tempCountries.get(tempCountries.size() / 2);
+        }
+        else
+        {
+            midPopCountry = tempCountries.get((tempCountries.size() / 2) + 1);
+        }
+        return new ResponseEntity<>(midPopCountry, HttpStatus.OK);
+    }
 }
