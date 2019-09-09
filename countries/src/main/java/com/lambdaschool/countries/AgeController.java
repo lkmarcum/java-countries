@@ -62,4 +62,23 @@ public class AgeController
 
         return new ResponseEntity<>(maxAgeCountry, HttpStatus.OK);
     }
+
+    // localhost:8080/age/median
+    @GetMapping(value = "/median",
+    produces = {"application/json"})
+    public ResponseEntity<?> getCountryByMedianAge()
+    {
+        Country midAgeCountry;
+        ArrayList<Country> tempCountries = CountriesApplication.myCountryList.countryList;
+        tempCountries.sort((c1, c2) -> (c1.getMedianAge() - c2.getMedianAge()));
+        if (tempCountries.size() % 2 == 0)
+        {
+            midAgeCountry = tempCountries.get(tempCountries.size() / 2);
+        }
+        else
+        {
+            midAgeCountry = tempCountries.get((tempCountries.size() / 2) + 1);
+        }
+        return new ResponseEntity<>(midAgeCountry, HttpStatus.OK);
+    }
 }
